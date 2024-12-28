@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Awd\Tests\ValueObject;
+namespace Awd\Tests\ValueObject\DateTime;
 
 use Awd\ValueObject\DateTime;
-use Awd\ValueObject\Period;
+use Awd\ValueObject\DateTimePeriod;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
@@ -20,15 +20,15 @@ final class DateTimeCalculationTest extends TestCase
         $dt = new DateTime(new \DateTimeImmutable('2020-03-26T18:14:00'));
         $dtInADay = new DateTime(new \DateTimeImmutable('2020-03-27T18:14:00'));
 
-        $aDay = new Period(new \DateInterval('P1D'));
+        $aDay = new DateTimePeriod(days: 1);
 
-        assertTrue($dtInADay->isEqual($dt->inA($aDay)));
+        assertTrue($dtInADay->isEqual($dt->modified($aDay)));
     }
 
     public function testMustNotImpactOnInstanceAfterAdding(): void
     {
         $dt = new DateTime(new \DateTimeImmutable('2020-03-26T18:14:00'));
-        $nextDay = $dt->inA(new Period(new \DateInterval('P1D')));
+        $nextDay = $dt->modified(new DateTimePeriod(days: 1));
 
         assertNotSame($dt, $nextDay);
         assertTrue($dt->isEqual(new DateTime(new \DateTimeImmutable('2020-03-26T18:14:00'))));

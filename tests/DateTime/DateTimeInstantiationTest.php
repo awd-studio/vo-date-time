@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Awd\Tests\ValueObject;
+namespace Awd\Tests\ValueObject\DateTime;
 
+use Awd\Tests\Shared\AppTestCase;
 use Awd\ValueObject\DateInvalidArgument;
 use Awd\ValueObject\DateTime;
 use Awd\ValueObject\IDateTime;
-use Awd\Tests\Shared\AppTestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 

@@ -112,9 +112,9 @@ final readonly class DateTime implements IDateTime
     }
 
     #[\Override]
-    public function inA(Period $period): IDateTime
+    public function modified(DateTimePeriod $period): IDateTime
     {
-        return new self($this->dateTime->add($period->toDateInterval()));
+        return $period->appliedTo($this);
     }
 
     #[\Override]

@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Awd\Tests\ValueObject;
+namespace Awd\Tests\ValueObject\DateTime;
 
-use Awd\ValueObject\DateTime;
 use Awd\Tests\Shared\AppTestCase;
+use Awd\ValueObject\DateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
+
 use function PHPUnit\Framework\assertSame;
 
 #[CoversClass(DateTime::class)]

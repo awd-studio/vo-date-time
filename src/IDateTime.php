@@ -69,7 +69,7 @@ interface IDateTime extends \Stringable
     /**
      * Returns a new instance for a date which will be in a specific period.
      */
-    public function inA(Period $period): self;
+    public function modified(DateTimePeriod $period): self;
 
     /**
      * Returns one of dates that is larger.

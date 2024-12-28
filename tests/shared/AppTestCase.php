@@ -6,7 +6,7 @@ namespace Awd\Tests\Shared;
 
 use Awd\ValueObject\DateTime;
 use Awd\ValueObject\IDateTime;
-use Awd\ValueObject\Period;
+use Awd\ValueObject\DateTimePeriod;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\LogicalNot;
 use PHPUnit\Framework\TestCase;
@@ -29,7 +29,7 @@ abstract class AppTestCase extends TestCase
      * just as a parameter, and supposes no behavior.
      *
      */
-    protected static Period $periodStub;
+    protected static DateTimePeriod $periodStub;
 
     /**
      * Uses the PHPUnit API to fill up static values
@@ -55,9 +55,9 @@ abstract class AppTestCase extends TestCase
      * Returns a prophecy for Period.
      *
      */
-    protected function periodProphecy(): ObjectProphecy|Period
+    protected function periodProphecy(): ObjectProphecy|DateTimePeriod
     {
-        return $this->prophesize(Period::class);
+        return $this->prophesize(DateTimePeriod::class);
     }
 
     /**
@@ -87,7 +87,7 @@ abstract class AppTestCase extends TestCase
      * Returns an instance of Period.
      *
      */
-    protected function period(): Period
+    protected function period(): DateTimePeriod
     {
         return $this->periodProphecy()->reveal();
     }

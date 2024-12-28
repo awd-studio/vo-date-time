@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Awd\Tests\ValueObject;
+namespace Awd\Tests\ValueObject\DateTime;
 
 use Awd\Tests\Shared\AppTestCase;
 use Awd\ValueObject\DateTime;
