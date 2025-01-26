@@ -1,7 +1,11 @@
+#!make
+include .env
+export
+
 # Variables
 DOCKER = docker
 DOCKER_COMPOSE = docker compose
-EXEC = $(DOCKER) exec -it awd-vo-date-time-php-fpm
+EXEC = $(DOCKER) exec -it $(DOCKER_SERVICE_NAME_PHP)
 PHP = $(EXEC) php
 COMPOSER = $(EXEC) composer
 
@@ -24,22 +28,17 @@ cache-clear: ## Clear cache
 
 .PHONY: php
 php: ## Returns a bash of the PHP container
-	$(DOCKER_COMPOSE) up -d awd-vo-date-time-php-fpm
+	$(DOCKER_COMPOSE) up -d php-fpm
 	$(MAKE) php-bash
 
 .PHONY: php-bash
 php-bash:
-	$(DOCKER_COMPOSE) exec awd-vo-date-time-php-fpm bash -l
+	$(DOCKER_COMPOSE) exec php-fpm bash -l
 
 ## —— ✅ Test ——————————————————————————————————————————————————————————————————
 .PHONY: tests
 tests: ## Run all tests
-	$(MAKE) database-init-test
-	$(PHP) bin/phpunit --testdox tests/unit/
-
-.PHONY: unit-test
-unit-test: ## Run unit tests
-	$(PHP) bin/phpunit --testdox tests/unit/
+	$(COMPOSER) test
 
 ## —— 🐳 Docker ———————————————————————————————————————————————————————————————
 .PHONY: build
@@ -69,6 +68,11 @@ docker-stop:
 	$(DOCKER_COMPOSE) stop
 	@$(call GREEN,"The containers are now stopped.")
 
+.PHONY: docker-down
+docker-down: ## Down all containers
+	$(DOCKER_COMPOSE) down
+	@$(call GREEN,"The containers are now down.")
+
 ## —— 🎻 Composer —————————————————————————————————————————————————————————————
 .PHONY: composer-install
 composer-install: ## Install dependencies
@@ -85,4 +89,4 @@ composer-clear-cache: ## clear-cache dependencies
 ## —— 🛠️ Others ——————————————————————————————————————————————————————————————
 .PHONY: help
 help: ## List of commands
-	@grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
+	@grep -E '(^[a-zA-Z0-9_-]+:.*?##.*$$)|(^##)' Makefile | awk 'BEGIN {FS = ":.*?## "}{printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
