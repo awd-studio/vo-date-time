@@ -15,7 +15,7 @@ final class DateTimeFormattingTest extends TestCase
 {
     public function testMustReturnDateTimeStringRepresentationAccordedToSelectedFormat(): void
     {
-        $initial = new DateTime(new \DateTimeImmutable('04.04.2020 01:23:45')); // It's Saturday
+        $initial = new DateTime(new \DateTimeImmutable('2020-04-04 01:23:45')); // It's Saturday
 
         assertSame('Sat, April 4, 2020, 1:23 am', $initial->format('D, F j, Y, g:i a'));
         assertSame('04-04-2020 01:23:45', $initial->format('d-m-Y H:i:s'));
@@ -24,9 +24,9 @@ final class DateTimeFormattingTest extends TestCase
 
     public function testMustReturnDateTimeStringRepresentationWithTheDefaultFormatWhenNoArgumentsPassed(): void
     {
-        $initial = new DateTime(new \DateTimeImmutable('04.04.2020 01:23:45'));
+        $initial = new DateTime(new \DateTimeImmutable('2020-04-04 01:23:45'));
 
-        assertSame('04.04.2020 01:23:45', $initial->format());
+        assertSame('2020-04-04 01:23:45', $initial->format());
     }
 
     public function testMustReturnAStringWithDefaultFormat(): void

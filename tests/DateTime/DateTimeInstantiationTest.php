@@ -49,18 +49,18 @@ final class DateTimeInstantiationTest extends AppTestCase
 
     public function testMustCreateAnotherDateTimeInstanceWithSentTime(): void
     {
-        $initial = new DateTime(new \DateTimeImmutable('04.04.2020 01:23:45'));
+        $initial = new DateTime(new \DateTimeImmutable('2020-04-04 01:23:45'));
 
         $withTime = $initial->withTime(12, 42, 55, 69);
 
         assertInstanceOf(DateTime::class, $withTime);
-        assertDateTimeEquals($withTime, DateTime::fromString('04.04.2020 12:42:55.000069'));
-        assertDateTimeEquals($initial, DateTime::fromString('04.04.2020 01:23:45.0'));
+        assertDateTimeEquals($withTime, DateTime::fromString('2020-04-04 12:42:55.000069'));
+        assertDateTimeEquals($initial, DateTime::fromString('2020-04-04 01:23:45.0'));
     }
 
     public function testMustCreateAnInstanceFromUnixTimestamp(): void
     {
-        $timestamp = 1585963425; // This is a UNIX timestamp of 04.04.2020 01:23:45 UTC
+        $timestamp = 1585963425; // This is a UNIX timestamp of 2020-04-04 01:23:45 UTC
         $instance = DateTime::fromTimestamp($timestamp);
 
         assertInstanceOf(DateTime::class, $instance);
@@ -69,37 +69,37 @@ final class DateTimeInstantiationTest extends AppTestCase
 
     public function testMustReturnANewInstanceWithAPreviousDayValue(): void
     {
-        $initial = new DateTime(new \DateTimeImmutable('04.04.2020 01:23:45'));
+        $initial = new DateTime(new \DateTimeImmutable('2020-04-04 01:23:45'));
 
         $prevDay = $initial->prevDay();
 
         assertInstanceOf(DateTime::class, $prevDay);
         assertDateTimeEquals($prevDay, DateTime::fromString('03.04.2020 01:23:45'));
-        assertDateTimeEquals($initial, DateTime::fromString('04.04.2020 01:23:45'));
+        assertDateTimeEquals($initial, DateTime::fromString('2020-04-04 01:23:45'));
     }
 
     public function testMustReturnANewInstanceWithANextDayValue(): void
     {
-        $initial = new DateTime(new \DateTimeImmutable('04.04.2020 01:23:45'));
+        $initial = new DateTime(new \DateTimeImmutable('2020-04-04 01:23:45'));
 
         $nextDay = $initial->nextDay();
 
         assertInstanceOf(DateTime::class, $nextDay);
         assertDateTimeEquals($nextDay, DateTime::fromString('05.04.2020 01:23:45'));
-        assertDateTimeEquals($initial, DateTime::fromString('04.04.2020 01:23:45'));
+        assertDateTimeEquals($initial, DateTime::fromString('2020-04-04 01:23:45'));
     }
 
     public function testMustReturnTrueIfAnotherInstanceHasTheSameDay(): void
     {
-        $compDay = new DateTime(new \DateTimeImmutable('04.04.2020 00:00:00'));
-        $sameDay = new DateTime(new \DateTimeImmutable('04.04.2020 12:25:54'));
+        $compDay = new DateTime(new \DateTimeImmutable('2020-04-04 00:00:00'));
+        $sameDay = new DateTime(new \DateTimeImmutable('2020-04-04 12:25:54'));
 
         assertDateTimeIsSameDay($compDay, $sameDay);
     }
 
     public function testMustReturnFalseIfAnotherInstanceHasDifferentWeekDay(): void
     {
-        $compDay = new DateTime(new \DateTimeImmutable('04.04.2020 00:00:00'));
+        $compDay = new DateTime(new \DateTimeImmutable('2020-04-04 00:00:00'));
         $lessDay = new DateTime(new \DateTimeImmutable('03.01.2020 23:59:59'));
         $mostDay = new DateTime(new \DateTimeImmutable('04.01.2020 00:00:00'));
 

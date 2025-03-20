@@ -10,7 +10,7 @@ namespace Awd\ValueObject;
 interface IDateTime extends \Stringable
 {
     /** @var string the default format to cast to a string */
-    public const string DEFAULT_FORMAT = 'd.m.Y H:i:s';
+    public const string DEFAULT_FORMAT = 'Y-m-d H:i:s';
     public const string FULL_DATE = 'Y-m-d\TH:i:s.uP';
     public const string ISO_FORMAT = 'c';
     public const string DAY_READING_FORMAT = 'l, j F';
