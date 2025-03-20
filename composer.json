@@ -2,7 +2,6 @@
     "name": "awd-studio/vo-date-time",
     "description": "Provides a useful wrapper for dates as an value-object implementation.",
     "type": "library",
-    "version": "1.0.0",
     "require": {
         "php": "^8.3"
     },
