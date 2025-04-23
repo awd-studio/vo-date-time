@@ -1,5 +1,13 @@
-vendor
+# Env files
+.env
+.env.*
+!.env.dist
+
+# Tools
 tools/cache/*
 tools/logs/*
 tools/report/*
 tools/**/vendor
+
+# Project
+vendor
